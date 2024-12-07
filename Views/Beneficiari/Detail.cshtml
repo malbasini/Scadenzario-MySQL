@@ -1,0 +1,61 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model Scadenzario.Models.ViewModels.Beneficiari.BeneficiarioDetailViewModel
+<br>
+<br>
+<div class="container">
+        <div class="alert alert-success">
+            <h2 style="text-align: center"><b>@ViewData["Title"]</b></h2>
+        </div>
+</div>   
+<br>
+<section class="course-info">
+    <div class="row">
+        <input type="hidden" name="id" asp-for="IdBeneficiario">
+        <div class="col-md-6">
+            <a class="btn btn-outline-primary btn-sm" asp-action="Edit" asp-route-id="@Model.IdBeneficiario"><i class="fas fa-pencil-alt"></i> Modifica</a>
+            <a class="btn btn-outline-primary btn-sm" asp-action="Index"><i class="fas fa-th-list"></i> Torna alla Lista</a>
+        </div>
+        <div class="col-md-6">
+          
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-6 mb-3 mb-sm-0">
+            <div class="card text-bg-warning mb-3 col-6 offset-md-6" style="width: 100%;">
+                <div class="card-header">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
+                    </svg>
+                    Dettaglio
+                </div>
+                <div class="card-body">
+                    <div class="input-group">
+                        <label asp-for="Denominazione"></label>:&nbsp
+                        <b>@Model.Denominazione</b>
+                    </div>
+                    <div class="input-group">
+                        <label asp-for="Descrizione"></label>:&nbsp
+                        <p>@Html.Raw(@Model.Descrizione)</p>
+                    </div>
+                    <div class="input-group">
+                        <label asp-for="Email"></label>:&nbsp
+                        <b>@Model.Email</b>
+                    </div>
+                    <div class="input-group">
+                        <label asp-for="Telefono"></label>:&nbsp
+                        <b>@Model.Telefono</b>
+                    </div>
+                    <div class="input-group">
+                        <label asp-for="SitoWeb"></label>:&nbsp
+                        <a href=@Model.SitoWeb class="card-link">@Model.SitoWeb</a>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    Footer
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

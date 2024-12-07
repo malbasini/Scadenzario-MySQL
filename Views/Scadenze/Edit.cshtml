@@ -1,0 +1,206 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Scadenze.Customizations.TagHelpers
+@model Scadenzario.Models.InputModels.Scadenze.ScadenzaEditInputModel
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="alert alert-success">
+        <h2 style="text-align: center"><b>@ViewData["Title"]</b></h2>
+    </div>
+</div>
+<br>
+<br>
+<section class="course-info">
+    <form method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-10">
+            </div>
+            <div class="col-md-2 d-flex align-items-center">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Salva</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" onclick="submitForm();"  class="btn btn-danger btn-lg ml-3" data-bs-toggle="modal" data-bs-target="#delete-modal"><i class="fas fa-trash-alt"></i></button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12" asp-validation-summary="All" class="text-danger"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-floating mb-3">
+                    <select asp-for="IdBeneficiario" asp-items="@Model.Beneficiari" class="form-control"></select>
+                    <label asp-for="IdBeneficiario">Beneficiario</label>
+                    <span asp-validation-for="IdBeneficiario" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="date" asp-for="DataScadenza" class="form-control" aria-required="true" />
+                    <label asp-for="DataScadenza">Data Scadenza</label>
+                    <span asp-validation-for="DataScadenza" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Importo" class="form-control" aria-required="true" />
+                    <label asp-for="Importo">Importo</label>
+                    <span asp-validation-for="Importo" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <aside>
+                    <div class="form-floating mb-3">
+                        @if (Model.GiorniRitardo < 0)
+                        {
+                        Model.GiorniRitardo = @Math.Abs((int)Model.GiorniRitardo);
+                        <input asp-for="GiorniRitardo" class="form-control" readonly="true" style="color:red">
+                        <label asp-for="GiorniRitardo">Giorni Ritardo</label>
+                       
+                        }
+                        else
+                        {
+                        <input asp-for="GiorniRitardo" class="form-control" readonly="true" style="color:red">
+                        <label asp-for="GiorniRitardo">Giorni Ritardo</label>
+                        }
+                    </div>
+                    <div class="form-check">
+                        <label><input asp-for="Sollecito" />&nbsp;&nbsp;&nbsp;@Html.DisplayNameFor(m => m.Sollecito)</label>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div class="form-floating mb-3">
+                        <input type="date" asp-for="DataPagamento" class="form-control" aria-required="true" />
+                        <label asp-for="DataPagamento">Data Pagamento</label>
+                        <span asp-validation-for="DataPagamento" class="text-danger"></span>
+                    </div>
+                    <br/>
+                    <form method="post" enctype="multipart/form-data" asp-controller="Ricevute" asp-action="FileUpload">
+                        <div class="form-group">
+                            <input type="file" id="FileUpload" class="btn btn-success" multiple="multiple" />
+                            <button type="button" id="btnUpload" value="Upload Files" class="btn btn-warning"><i class="fas fa-cog"></i>Upload</button>
+                        </div>
+                    </form>
+                </aside>
+                <div class="form-group">
+                    <input asp-for="IdScadenza" class="form-control" style="visibility: hidden;">
+                    <span asp-validation-for="IdScadenza"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="IdBeneficiario" class="form-control" style="visibility: hidden;">
+                    <span asp-validation-for="IdBeneficiario"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="IdUser" class="form-control" style="visibility: hidden;">
+                    <span asp-validation-for="IdUser"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="Denominazione" class="form-control" style="visibility: hidden;">
+                    <span asp-validation-for="Denominazione"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="Beneficiari" class="form-control" style="visibility: hidden;">
+                    <span asp-validation-for="Beneficiari"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="Ricevute" class="form-control" style="visibility: hidden;">
+                    <span asp-validation-for="Ricevute"></span>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form asp-action="Delete" asp-controller="Scadenze" asp-route-id="@Model.IdScadenza">
+        <!-- Modal -->
+        <div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Elimina Scadenza</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Stai per eliminare la scadenza e tutte le sue ricevute e non potrai recuperarla. Confermi l'eliminazione?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Chiudi</button>
+                        <button type="submit"  class="btn btn-danger">Conferma</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+@if(Model.Ricevute != null && Model.Ricevute.Count > 0)
+{
+<div class="container">
+    <div class="alert alert-success">
+        <h2 style="text-align: center"><b>Lista Ricevute</b></h2>
+    </div>
+</div>
+<div class="table-responsive-md">
+    <table class="table table-striped table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Beneficiario</th>
+            <th scope="col">Nome File</th>
+            <th scope="col">Identificativo Scadenza</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.Ricevute)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Beneficiario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdScadenza)
+            </td>
+            <td>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        Azioni
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" asp-controller="Ricevute"  asp-action="Download" asp-route-id="@item.Id">Scarica File</a></li>
+                        <li><a class="dropdown-item" asp-controller="Ricevute"  asp-action="DeleteAllegato" asp-route-id="@item.Id">Cancella Allegato</a></li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        }
+        </tbody>
+    </table>
+</div>
+}
+@section Scripts
+{
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnUpload").click(function (e) {
+            var data = new FormData();
+            var files = $("#FileUpload").get(0).files;
+            if (files.length === 0)
+                return;
+            for (var i = 0; i < files.length; i++)
+            {
+                data.append(files[i].name, files[i]);
+            }
+            $.ajax({
+                url: '@Url.Action("FileUpload", "Ricevute")',
+                type: "POST",
+                data: data,
+                contentType: false,
+                dataType: false,
+                processData: false,
+                success: function (result)
+                {
+                    alert(result);
+                }
+            });
+        });
+    });
+</script>
+}

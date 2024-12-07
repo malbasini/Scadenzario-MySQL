@@ -1,0 +1,53 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Scadenze.Customizations.TagHelpers
+@model Scadenzario.Models.InputModels.Scadenze.ScadenzaCreateInputModel
+<br>
+<br>
+    <div class="container">
+          <div class="alert alert-success">
+            <h2 style="text-align: center"><b>@ViewData["Title"]</b></h2>
+        </div>
+  </div>   
+<br>
+<form method="post">
+    <div asp-validation-summary="All" class="text-danger"></div> 
+    <div class="row">
+        <div class="form-group">
+            <input asp-for="Beneficiari" class="form-control" style="visibility: hidden;">
+            <span asp-validation-for="Beneficiari"></span>
+        </div>
+        <div class="form-floating mb-3 col-md-4">
+            <select asp-for="@Model.IdBeneficiario" asp-items="@Model.Beneficiari" class="form-control"></select>
+            <label asp-for="IdBeneficiario">Beneficiario</label>
+            <span asp-validation-for="IdBeneficiario" class="text-danger"></span>
+        </div>
+        <div class="form-floating mb-3 col-md-4">
+            <input type="date" asp-for="DataScadenza" class="form-control" aria-required="true"/>
+            <label asp-for="DataScadenza">Data Scadenza</label>
+            <span asp-validation-for="DataScadenza" class="text-danger"></span>
+        </div>
+        <div class="form-floating mb-3 col-md-4">
+            <input asp-for="Importo" class="form-control" aria-required="true"/>
+            <label asp-for="Importo">Importo</label>
+            <span asp-validation-for="Importo" class="text-danger"></span>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-4"></div> 
+        <div class="col-md-4">
+            <br/>
+            <recaptcha></recaptcha>
+            <br/>
+            <button type="submit" class="btn btn-primary btn-lg btn-block"><i class="fas fa-rocket"></i> Crea Scadenza</button>
+        </div> 
+         <div class="col-md-4">
+           
+        </div>    
+    </div> 
+</form>
+@section Scripts
+{
+
+}

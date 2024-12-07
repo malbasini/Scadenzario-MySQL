@@ -1,0 +1,91 @@
+@model BeneficiarioEditInputModel
+<br>
+<br>
+    <div class="container">
+          <div class="alert alert-success">
+            <h2 style="text-align: center"><b>@ViewData["Title"]</b></h2>
+        </div>
+  </div>   
+<br>
+<section class="course-info">
+    <form method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-10">
+            </div>
+            <div class="col-md-2 d-flex align-items-center">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Salva</button>
+                <button class="btn btn-danger btn-lg ml-3" type="button" data-toggle="modal" data-target="#delete-modal"><i class="fas fa-trash-alt"></i></button>
+            </div>
+        </div>
+        <br/>
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <aside>
+                <div class="form-floating mb-3">
+                    <input asp-for="Denominazione" class="form-control" aria-required="true" placeholder="Mario Rossi"/>
+                    <label asp-for="Denominazione">Beneficiario</label>
+                    <span asp-validation-for="Denominazione" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Descrizione">Descrizione</label>
+                    <textarea asp-for="Descrizione" class="form-control" data-summernote rows="12" aria-required="true" placeholder="Descrizione"></textarea>
+                    <span asp-validation-for="Descrizione" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="IdBeneficiario" class="form-control" style="visibility: hidden;">
+                    <span asp-validation-for="IdBeneficiario"></span>
+                </div>
+                    <div class="form-group">
+                        <input asp-for="IdUser" class="form-control" style="visibility: hidden;">
+                        <span asp-validation-for="IdUser"></span>
+                    </div>
+               </aside>
+            </div>
+            <div class="col-md-6">
+                <aside>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Email" class="form-control" aria-required="true" placeholder="Email" />
+                        <label asp-for="Email">Email</label>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Telefono" class="form-control" aria-required="true" placeholder="Telefono">
+                        <label asp-for="Telefono">Telefono</label>
+                        <span asp-validation-for="Telefono" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="SitoWeb" class="form-control" aria-required="true" placeholder="Sito web">
+                        <label asp-for="SitoWeb">Sito web</label>
+                        <span asp-validation-for="SitoWeb" class="text-danger"></span>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </form>
+    <form method="post" asp-action="Delete" asp-route-id="@Model.IdBeneficiario">
+        <div id="delete-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="delete-modal-title" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="delete-modal-title">Conferma eliminazione</h5>
+                        <button class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Stai per eliminare il beneficiario, tutte le scadenze associate e le relative ricevute. Non potrai recuperare i dati. Confermi l'eliminazione?</p>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button class="btn btn-info" type="button" data-dismiss="modal">Annulla</button>
+                        <button type="submit" class="btn btn-danger">Conferma</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+@section Scripts
+{
+    <partial name="_Validation"></partial>
+    <partial name="_Summernote"></partial>
+}

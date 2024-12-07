@@ -1,0 +1,61 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model Scadenzario.Models.ViewModels.Scadenze.ScadenzaListViewModel
+    <br>
+    <br>
+        <div class="container">
+          <div class="alert alert-success">
+              <h2 style="text-align: center"><b>@ViewData["Title"]</b></h2>
+          </div>
+      </div>   
+    <br>
+    @if(TempData["Message"] != null)
+    {
+        <div class="container">
+                <div class="alert alert-info">
+                    <h2 style="text-align: center"><b>@TempData["Message"]</b></h2>
+                </div>
+        </div> 
+    }
+    <br>
+    <div class="row">
+        <div class="col-md-3">
+              <a class="btn btn-outline-primary btn-sm" asp-action="Create" asp-controller="Scadenze"><i class="fas fa-plus-circle"></i>  Nuova Scadenza</a>
+        </div>
+        <div class="col-md-9 d-flex flex-row-reverse">
+            <form asp-controller="Scadenze" asp-action="Index" method="GET">
+                <div class="input-group">
+                    <b style="text-align: center;">Beneficiario/Data Scadenza</b>&nbsp;&nbsp;&nbsp;<input type="text" name="search" class="form-control" placeholder="Cerca..." aria-label="Cerca..." aria-describedby="search-button" value="@Model.Input.Search">
+                    <button class="input-group-text" id="search-button"><i class="fas fa-search"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="table-responsive-md">
+        <table class="table table-striped table-hover">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col"><order-link-scadenza order-by="Denominazione" Input="@Model.Input">Beneficiario</order-link-scadenza></th>
+                    <th scope="col"><order-link-scadenza order-by="DataScadenza" Input="@Model.Input">Data Scadenza</order-link-scadenza></th>
+                    <th scope="col"><order-link-scadenza order-by="Importo" Input="@Model.Input">Importo</order-link-scadenza></th>
+                    <th scope="col">Giorni Ritardo</th>
+                    <th scope="col">Data Pagamento</th>
+                    <th scope="col">Sollecito</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Scadenze.Results)
+                {
+                     <partial name="Scadenze/_ScadenzaLine" model=@item></partial>
+                }
+            </tbody>
+        </table>
+    </div>
+   <br>
+   <br>
+    <vc:pagination-bar model="@Model"></vc:pagination-bar>
+                
+            
+

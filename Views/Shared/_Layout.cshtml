@@ -1,0 +1,81 @@
+﻿@using System.Security.Claims
+@using Microsoft.AspNetCore.Mvc.TagHelpers;
+@using Microsoft.Extensions.Options
+@using Scadenzario.Models.Entity
+@using Scadenzario.Models.Options
+@inject UserManager<ApplicationUser> UserManager
+@inject IOptionsMonitor<AdminOption> UserOptionsMonitor
+@inject SignInManager<ApplicationUser> SignInManager
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Scadenzario</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Scadenzario.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark text-white bg-dark border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Scadenzario</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Beneficiari" asp-action="Index">Beneficiari</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Scadenze" asp-action="Index">Scadenze</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="https://mailtrap.io">Mail Trap</a>
+                        </li>
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            if (User.FindFirst(ClaimTypes.Email).Value.Equals(UserOptionsMonitor.CurrentValue.Default, StringComparison.OrdinalIgnoreCase))
+                            {
+                                 <li class="nav-item">
+                                     <a class="nav-link text-white" asp-page="/Admin/Users">Ruoli</a>
+                                 </li>
+                            }
+                        }
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        @if (TempData["ConfirmationMessage"] != null)
+        {
+        <div class="alert alert-success alert-dismissable mt-3" role="alert">
+            @TempData["ConfirmationMessage"]
+        </div>
+        }
+        @RenderBody()
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - Scadenzario - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

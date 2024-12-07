@@ -1,0 +1,47 @@
+ @using Microsoft.AspNetCore.Mvc.TagHelpers 
+ @model Scadenzario.Models.ViewModels.Scadenze.ScadenzaViewModel
+ <tr>
+                        <td>
+                             @Html.DisplayFor(modelItem => Model.Denominazione)
+                        </td>
+                        <td>
+                           @Html.DisplayFor(modelItem => Model.DataScadenza)
+                        </td>
+                         <td>
+                              @if (Model.Importo > 0)
+                              {
+                                  decimal a = Model.Importo;
+                                  <font color="red">
+                                      @{
+                                          @a
+                                      }
+                                  </font>
+                              }
+                         </td>
+                        <td>
+                            @if (Model.GiorniRitardo < 0)
+                            {
+                                int appoggio = @Math.Abs((int)Model.GiorniRitardo);
+                                <font color="ff0000">
+                                @{
+                                    @appoggio
+                                }
+                                </font>
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => Model.GiorniRitardo)
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.DataPagamento)
+                        </td>
+                         <td>
+                             @Html.DisplayFor(modelItem => Model.Sollecito)
+                         </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <a class="btn btn-outline-primary" asp-action="Detail" asp-controller="Scadenze" asp-route-id = "@Model.IDScadenza">Dettaglio</a>
+                            </div>
+                        </td>
+                    </tr>

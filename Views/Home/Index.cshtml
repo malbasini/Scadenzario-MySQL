@@ -1,0 +1,41 @@
+﻿<style>
+    .jumbotron {
+        background-image: url('images/hero.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .jumbotron h1 {
+        font-size: 3.5rem;
+    }
+    h1 {
+        text-align: center;
+    }
+</style>
+<div class="mt-4 p-5 bg-primary text-white rounded">
+    <h1>SCADENZARIO</h1>
+</div>
+<br/>
+<div class="jumbotron">
+    <img src="images/hero.jpg" width="100%" height="27%"/>
+</div>
+<br/>
+            <div class="row">
+                <div class="col-md-4">
+                    <h1 style="color: black"><b>Gestione Scadenze</b></h1>
+                    <p><b>Dal menù Lista Scadenze è possibile creare tutte le nostre scadenze. Ovviamente prima
+                        vanno creati i beneficiari delle nostre scadenze.
+                    </b></p>
+                    <p><a data-toggle="tooltip" title="Gestione Scadenze" class="btn btn-primary" asp-controller="Scadenze" asp-action="Index">Gestione Scadenze</a></p>
+                </div>
+                <div class="col-md-4">
+                    <h1 style="color: black"><b>Gestione Beneficiario</b></h1>
+                    <p><b>Dal menù Lista Beneficiari è possibile creare tutti i beneficiari delle nostre scadenze.</b></p>
+                    <p><a data-toggle="tooltip" title="Gestione Beneficiario" class="btn btn-primary" asp-controller="Beneficiari" asp-action="Index">Gestione Beneficiario</a></p>
+                </div>
+                <div class="col-md-4">
+                    <h1 style="color:black"><b>Gestione Utenti</b></h1>
+                    <p><b>ASP.NET Core Identity mette a disposizione un efficiente gestione del profilo utente, è possibile 
+                        gestire utenti registrati localmente o associare la propria login a provider di autenticazione esterni.</b></p>
+                    <p><a data-toggle="tooltip" title="Login" class="btn btn-primary" asp-area="Identity" asp-page="/Account/Manage/Index">Gestione Utenti</a></p>
+                </div>
+            </div> 

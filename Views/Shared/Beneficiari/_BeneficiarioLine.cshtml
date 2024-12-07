@@ -1,0 +1,29 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model Scadenzario.Models.ViewModels.BeneficiarioViewModel
+<tr>
+                        @{
+                           string descrizione = Model.Descrizione;
+                           if(descrizione.Length > 100)
+                               descrizione=descrizione.Substring(0,98);
+                        }
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.Denominazione)
+                        </td>
+                        <td>
+                            <a asp-controller="Beneficiari" asp-action="Edit" asp-route-id="@Model.IdBeneficiario">@Html.Raw(@Model.Descrizione)</a>
+                        </td>
+                        <td>
+                           @Html.DisplayFor(modelItem => Model.Email)
+                        </td>
+                        <td>
+                           @Html.DisplayFor(modelItem => Model.Telefono)
+                        </td>
+                        <td>
+                           <a href="@Html.DisplayFor(modelItem => Model.SitoWeb)">@Html.DisplayFor(modelItem => Model.SitoWeb)</a>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <a class="btn btn-outline-primary" asp-action="Detail" asp-controller="Beneficiari" asp-route-id = "@Model.IdBeneficiario">Dettaglio</a>
+                            </div>
+                        </td>
+                    </tr>

@@ -1,0 +1,124 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Scadenze.Customizations.TagHelpers
+@model Scadenzario.Models.ViewModels.Scadenze.ScadenzaDetailViewModel
+<br>
+<div class="container">
+        <div class="alert alert-success">
+            <h2 style="text-align: center"><b>@ViewData["Title"]</b></h2>
+        </div>
+</div>   
+<br>
+<section class="course-info">
+    <div class="row">
+        <input type="hidden" name="id" asp-for="IDBeneficiario">
+        <div class="col-md-6">
+            <a class="btn btn-outline-primary btn-sm" asp-action="Edit" asp-controller="Scadenze"  asp-route-id="@Model.IDScadenza"><i class="fas fa-pencil-alt"></i> Modifica</a>
+            <a class="btn btn-outline-primary btn-sm" asp-controller="Scadenze" asp-action="Index"><i class="fas fa-th-list"></i> Torna alla Lista</a>
+        </div>
+        <div class="col-md-6">
+          
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-6 mb-3 mb-sm-0">
+            <div class="card text-dark bg-warning mb-3 col-6 offset-md-6" style="width: 100%;">
+                <div class="card-header">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
+                    </svg>
+                    Dettaglio
+                </div>
+                <div class="card-body">
+                    <div class="row col-12">
+                        <div class="input-group">
+                            <label asp-for="Denominazione"></label>:&nbsp;
+                            <b>@Model.Denominazione</b>
+                        </div>
+                        <div class="input-group">
+                            <label asp-for="DataScadenza"></label>:&nbsp;
+                            <b>@Model.DataScadenza.ToString().Replace("00:00:00","")</b>
+                        </div>
+                        <div class="input-group">
+                            <label asp-for="Importo"></label>:&nbsp;
+                            <b>@Model.Importo&nbsp;€</b>
+                        </div>
+                    </div>
+                    <div class="row col-12">
+                        <div class="input-group">
+                            <label asp-for="DataPagamento"></label>:&nbsp;
+                            <b>@Model.DataPagamento.ToString().Replace("00:00:00","")</b>
+                        </div>
+                        <div class="input-group">
+                            <label asp-for="GiorniRitardo"></label>:&nbsp;
+                            @{
+                                if (Model.GiorniRitardo < 0)
+                                {
+                                    <b style="color: red">@Model.GiorniRitardo</b>
+                                }
+                                else
+                                {
+                                    <b style="color: black">@Model.GiorniRitardo</b>
+                                }
+                            }
+                            
+                        </div>
+                        <div class="input-group">
+                            <label asp-for="Sollecito"></label>:&nbsp;
+                            @{
+                                string s = String.Empty;
+                                s = Model.Sollecito.Equals(true) ? " Si" : "No";
+                            }
+                                <b>@s</b>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    Footer
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <hr/>
+    @if(Model.Ricevute != null && Model.Ricevute.Count > 0)
+    {
+    <div class="container">
+        <div class="alert alert-success">
+            <h2 style="text-align: center"><b>Lista Ricevute</b></h2>
+        </div>
+    </div>
+    <div class="table-responsive-md">
+        <table class="table table-striped table-hover">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Beneficiario</th>
+                <th scope="col">Nome File</th>
+                <th scope="col">Identificativo Scadenza</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model.Ricevute)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Beneficiario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FileName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdScadenza)
+                </td>
+            </tr>
+            }
+            </tbody>
+        </table>
+    </div> 
+}
+</section>

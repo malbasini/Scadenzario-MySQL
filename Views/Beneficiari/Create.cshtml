@@ -1,0 +1,43 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model BeneficiarioCreateInputModel
+<br>
+<br>
+    <div class="container">
+          <div class="alert alert-success">
+            <h2 style="text-align: center"><b>@ViewData["Title"]</b></h2>
+        </div>
+  </div>   
+<br>
+<form method="post">
+    <div asp-validation-summary="All" class="text-danger"></div> 
+    <div class="row">
+        <div class="form-floating mb-3 col-md-6">
+            <input asp-for="Denominazione" class="form-control" aria-required="true" placeholder="Mario Rossi" />
+            <label asp-for="Denominazione">Beneficiario</label>
+            <span asp-validation-for="Denominazione" class="text-danger"></span>
+        </div>
+        <div class="form-floating mb-3 col-md-6">
+            <input asp-for="Descrizione" class="form-control" aria-required="true" placeholder="Mario Rossi" />
+            <label asp-for="Descrizione">Descrizione</label>
+            <span asp-validation-for="Descrizione" class="text-danger"></span>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-4"></div> 
+        <div class="col-md-4">
+            <br/>
+            <recaptcha></recaptcha>
+            <br>
+            <button type="submit" class="btn btn-primary btn-lg btn-block"><i class="fas fa-rocket"></i> Crea beneficiario</button>
+        </div> 
+         <div class="col-md-4">
+           
+        </div>    
+    </div> 
+</form>
+@section Scripts
+{
+    <partial name="_Validation"></partial>
+}
