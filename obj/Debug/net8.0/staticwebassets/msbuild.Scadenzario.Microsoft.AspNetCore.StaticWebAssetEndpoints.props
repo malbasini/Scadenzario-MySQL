@@ -784,13 +784,13 @@
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Scadenzario.7x6owiax1b.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"7x6owiax1b"},{"Name":"integrity","Value":"sha256-C8GeOwSjVQFNzG1JVG8yby9LYp\u002BGNED2X8JUAp\u002BpeQg="},{"Name":"label","Value":"_content/Scadenzario/Scadenzario.bundle.scp.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1080"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022C8GeOwSjVQFNzG1JVG8yby9LYp\u002BGNED2X8JUAp\u002BpeQg=\u0022"},{"Name":"Last-Modified","Value":"Fri, 06 Dec 2024 14:18:38 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1080"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022C8GeOwSjVQFNzG1JVG8yby9LYp\u002BGNED2X8JUAp\u002BpeQg=\u0022"},{"Name":"Last-Modified","Value":"Sun, 08 Dec 2024 13:30:47 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/Scadenzario/Scadenzario.bundle.scp.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Scadenzario.7x6owiax1b.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-C8GeOwSjVQFNzG1JVG8yby9LYp\u002BGNED2X8JUAp\u002BpeQg="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1080"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022C8GeOwSjVQFNzG1JVG8yby9LYp\u002BGNED2X8JUAp\u002BpeQg=\u0022"},{"Name":"Last-Modified","Value":"Fri, 06 Dec 2024 14:18:38 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1080"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022C8GeOwSjVQFNzG1JVG8yby9LYp\u002BGNED2X8JUAp\u002BpeQg=\u0022"},{"Name":"Last-Modified","Value":"Sun, 08 Dec 2024 13:30:47 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/Scadenzario/style.9cga0llnpq.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\style.css'))</AssetFile>
