@@ -18,8 +18,8 @@ using Scadenze.Customizations.ModelBinders;
 using Scdenzario.Models.Options;
 
 
-var builder = WebApplication.CreateBuilder(args);
-// Add services to the container.
+            var builder = WebApplication.CreateBuilder(args);
+            // Add services to the container.
             string? connectionString = builder.Configuration.GetValue<String>("ConnectionStrings:Default");
             builder.Services.AddResponseCaching();
             builder.Services.AddReCaptcha(builder.Configuration.GetSection("ReCaptcha"));
